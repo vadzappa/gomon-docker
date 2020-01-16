@@ -50,7 +50,7 @@ unlockBuild() {
   rm -f /tmp/server.lock
 }
 
-inotifywait -e MODIFY -e DELETE -r -m /app |
+inotifywait -e MODIFY -e DELETE -q -r -m /app 2>/dev/null |
   while read -r path action file; do
     ext="${file##*.}"
     if [ "${ext}" != "go" ]; then
