@@ -9,7 +9,8 @@ RUN go get github.com/derekparker/delve/cmd/dlv
 WORKDIR /app
 
 COPY ./watch.sh /watch.sh
+COPY ./inotifier.sh /inotifier.sh
 
 EXPOSE 40000
 
-ENTRYPOINT /watch.sh
+ENTRYPOINT ["/watch.sh"]
