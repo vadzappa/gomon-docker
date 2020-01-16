@@ -25,7 +25,7 @@ shutDown() {
     done
   else
     while [ -n "$(pidof run_bin)" ]; do
-      kill -9 "$(pidof run_bin)" >/dev/null 2>&1
+      kill -s TERM "$(pidof run_bin)" >/dev/null 2>&1
     done
   fi
 }
