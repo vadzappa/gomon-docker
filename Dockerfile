@@ -12,4 +12,4 @@ COPY ./watch.sh /watch.sh
 
 EXPOSE 40000
 
-ENTRYPOINT sh /watch.sh
+ENTRYPOINT /watch.sh
