@@ -10,6 +10,7 @@ WORKDIR /app
 
 COPY ./watch.sh /watch.sh
 COPY ./inotifier.sh /inotifier.sh
+COPY ./check-alive.sh /check-alive.sh
 
 EXPOSE 40000
 

@@ -7,6 +7,7 @@ fi
 
 tail_pid=0
 notifier_pid=0
+check_alive_pid=0
 
 lockBuild() {
   if [ -f /tmp/server.lock ]; then
@@ -49,6 +50,10 @@ shutDown() {
     kill -s 9 $notifier_pid
   fi
 
+  if [ $check_alive_pid -ne 0 ]; then
+    kill -s 9 $check_alive_pid
+  fi
+
   stopApp
 
   exit 0
@@ -81,6 +86,9 @@ doRun
 
 /inotifier.sh &
 notifier_pid=$!
+
+/check-alive.sh "${IS_DEBUG}" &
+check_alive_pid=$!
 
 tail -f /dev/null &
 tail_pid=$!
