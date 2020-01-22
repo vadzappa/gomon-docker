@@ -16,7 +16,9 @@ This image allows to run golang inside container with possibility to:
 
 ## Env
 
-The following env variable is available `GO_NO_DEBUG`. Set it to anything except empty value to disable debugging, leaving only hot-reload on code changes
+The following env variables are available:
+* `GO_NO_DEBUG` - set it to anything except empty value to disable debugging, leaving only hot-reload on code changes
+* `GOMON_DIED_CHECK_INTERVAL` - (in seconds, default: **2**s) monitor will check if APP is alive with set interval
 
 ## Ports
 
