@@ -1,5 +1,9 @@
 #!/bin/sh
 
+timestmp() {
+    date +'[%F %T] [gomon] '
+}
+
 IS_DEBUG='true'
 if [ -n "${GO_NO_DEBUG}" ]; then
   IS_DEBUG='false'
@@ -21,7 +25,7 @@ unlockBuild() {
 }
 
 doRun() {
-  echo "Starting up application..."
+  echo "$(timestmp)Starting up application..."
   if [ "${IS_DEBUG}" = "true" ]; then
     dlv debug --wd /app --listen=:40000 --output=/tmp/debug_bin --headless=true --api-version=2 --log &
   else
@@ -44,7 +48,7 @@ stopApp() {
 }
 
 shutDown() {
-  echo "Shutting down"
+  echo "$(timestmp)Shutting down"
 
   if [ $notifier_pid -ne 0 ]; then
     kill -s 9 $notifier_pid
@@ -61,7 +65,7 @@ shutDown() {
 
 restart() {
   trap - USR1
-  echo "Restarting application..."
+  echo "$(timestmp)Restarting application..."
   lockBuild
 
   stopApp
