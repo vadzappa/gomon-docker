@@ -1,7 +1,7 @@
 #!/bin/sh
 
 timestmp() {
-    date +'[%F %T] [gomon] '
+  date +'[%F %T] [gomon] '
 }
 
 IS_DEBUG='true'
@@ -27,10 +27,16 @@ unlockBuild() {
 doRun() {
   echo "$(timestmp)Starting up application..."
   if [ "${IS_DEBUG}" = "true" ]; then
+    rm -f /tmp/debug_bin
     dlv debug --wd /app --listen=:40000 --output=/tmp/debug_bin --headless=true --api-version=2 --log &
   else
+    rm -f /tmp/run_bin
     (cd /app && go build -race -o /tmp/run_bin)
-    (cd /app && /tmp/run_bin &)
+    if [ -f /tmp/run_bin ]; then
+      (cd /app && /tmp/run_bin &)
+    else
+      echo "$(timestmp)Build failed"
+    fi
   fi
 }
 
