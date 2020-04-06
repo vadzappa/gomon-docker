@@ -1,4 +1,4 @@
-FROM golang:1.13
+FROM golang:1.14
 ENV CGO_ENABLED 1
 ENV GOFLAGS '-mod=vendor'
 ENV GO_NO_DEBUG ''
