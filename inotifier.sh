@@ -1,10 +1,17 @@
 #!/bin/sh
+GOMON_IGNORE=${GOMON_IGNORE-''}
+
+if [ "${GOMON_IGNORE}" = '' ]; then
+  EXCLUDE_REGEX=''
+else
+  EXCLUDE_REGEX="--exclude ${EXCLUDE_REGEX}"
+fi
 
 timestmp() {
     date +'[%F %T] [gomon] '
 }
 
-inotifywait -e MODIFY -e DELETE -q -r -m /app 2>/dev/null |
+inotifywait $EXCLUDE_REGEX -e MODIFY -e DELETE -q -r -m /app 2>/dev/null |
   while read -r path action file; do
     ext="${file##*.}"
     if [ "${ext}" != "go" ]; then
