@@ -31,7 +31,7 @@ doRun() {
     dlv debug --wd /app --listen=:40000 --output=/tmp/debug_bin --headless=true --api-version=2 --log &
   else
     rm -f /tmp/run_bin
-    (cd /app && go build -race -o /tmp/run_bin)
+    (cd /app && go build -race -o /tmp/run_bin $PACKAGE_DIR)
     if [ -f /tmp/run_bin ]; then
       (cd /app && /tmp/run_bin &)
     else
