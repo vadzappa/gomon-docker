@@ -1,10 +1,11 @@
 #!/bin/sh
+
 GOMON_IGNORE=${GOMON_IGNORE-''}
 
 if [ "${GOMON_IGNORE}" = '' ]; then
   EXCLUDE_REGEX=''
 else
-  EXCLUDE_REGEX="--exclude ${EXCLUDE_REGEX}"
+  EXCLUDE_REGEX="--exclude ${GOMON_IGNORE}"
 fi
 
 timestmp() {
@@ -17,6 +18,7 @@ inotifywait $EXCLUDE_REGEX -e MODIFY -e DELETE -q -r -m /app 2>/dev/null |
     if [ "${ext}" != "go" ]; then
       continue
     fi
+
     echo "$(timestmp)${action}-ed ${file}"
     kill -s USR1 1 &
   done
