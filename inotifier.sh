@@ -4,7 +4,7 @@ GOMON_IGNORE=${GOMON_IGNORE-''}
 if [ "${GOMON_IGNORE}" = '' ]; then
   EXCLUDE_REGEX=''
 else
-  EXCLUDE_REGEX="--exclude ${EXCLUDE_REGEX}"
+  EXCLUDE_REGEX="--exclude ${GOMON_IGNORE}"
 fi
 
 timestmp() {
