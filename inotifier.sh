@@ -1,5 +1,4 @@
 #!/bin/sh
-
 GOMON_IGNORE=${GOMON_IGNORE-''}
 
 if [ "${GOMON_IGNORE}" = '' ]; then
@@ -18,7 +17,6 @@ inotifywait $EXCLUDE_REGEX -e MODIFY -e DELETE -q -r -m /app 2>/dev/null |
     if [ "${ext}" != "go" ]; then
       continue
     fi
-
-    echo "$(timestmp)${action}-ed ${file} ${path}"
+    echo "$(timestmp)${action}-ed ${file}"
     kill -s USR1 1 &
   done
