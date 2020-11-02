@@ -17,6 +17,7 @@ This image allows to run golang inside container with possibility to:
 ## Env
 
 The following env variables are available:
+* `PACKAGE_DIR` - package where the main file located if not in root. Example: `./cmd/run`. Defaults to `.`
 * `GO_NO_DEBUG` - set it to anything except empty value to disable debugging, leaving only hot-reload on code changes
 * `GOMON_DIED_CHECK_INTERVAL` - (in seconds, default: **2**s) monitor will check if APP is alive with set interval
 * `GOMON_IGNORE` - extended regex to exclude files being watched
