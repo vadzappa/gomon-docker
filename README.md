@@ -35,7 +35,7 @@ Port 40000 is exposed for delve debugging
 version: '2.1'
 services:
   go-dev:
-    image: gomon-docker:1.13
+    image: gomon-docker:1.16
     environment:
       GO_NO_DEBUG: "true"
     volumes:
@@ -52,7 +52,7 @@ services:
 version: '2.1'
 services:
   go-dev:
-    image: gomon-docker:1.13
+    image: gomon-docker:1.16
     volumes:
       - .:/app:delegated
     ports:
