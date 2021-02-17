@@ -5,7 +5,7 @@ ENV GO_NO_DEBUG ''
 ENV PACKAGE_DIR '.'
 
 RUN apt update && apt install -y inotify-tools
-RUN go get github.com/derekparker/delve/cmd/dlv
+RUN go get github.com/go-delve/delve/cmd/dlv
 
 WORKDIR /app
 
