@@ -21,6 +21,18 @@ runForever() {
     sleep $GOMON_DIED_CHECK_INTERVAL
     if [ "${IS_DEBUG}" = "true" ]; then
       if [ -z "$(pidof dlv)" ] || [ -z "$(pidof debug_bin)" ]; then
+        j=0
+        while [ $j -le 6 ]; do
+            echo "$(timestmp)Something is not up, giving another try"
+            sleep 10
+            if [ "$(pidof dlv)" ] && [ "$(pidof debug_bin)" ]; then
+              break
+            fi
+            j=$(( j + 1 ))
+        done
+        if [ "$(pidof dlv)" ] && [ "$(pidof debug_bin)" ]; then
+          continue
+        fi
         notifyAppDied
         kill -s USR1 1 &
       fi
