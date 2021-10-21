@@ -21,6 +21,7 @@ The following env variables are available:
 * `GO_NO_DEBUG` - set it to anything except empty value to disable debugging, leaving only hot-reload on code changes
 * `GOMON_DIED_CHECK_INTERVAL` - (in seconds, default: **2**s) monitor will check if APP is alive with set interval
 * `GOMON_IGNORE` - extended regex to exclude files being watched
+* `GO_DEBUG_STARTUP_RETRIES` - max amount of 10-sec sleep iterations to give debugger time to properly set up, while running without  `GO_NO_DEBUG`. Defaults to `6`
 
 ## Ports
 

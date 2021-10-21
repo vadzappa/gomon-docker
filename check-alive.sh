@@ -14,6 +14,12 @@ notifyAppDied() {
     echo "$(timestmp)Application died, restarting..."
 }
 
+DEBUG_RETRIES="${GO_DEBUG_STARTUP_RETRIES}"
+if [ -z "${GO_DEBUG_STARTUP_RETRIES}" ]; then
+  DEBUG_RETRIES="6"
+fi
+
+
 runForever() {
   sleep 10
   IS_DEBUG="${1}"
@@ -22,7 +28,7 @@ runForever() {
     if [ "${IS_DEBUG}" = "true" ]; then
       if [ -z "$(pidof dlv)" ] || [ -z "$(pidof debug_bin)" ]; then
         j=0
-        while [ $j -le 6 ]; do
+        while [ $j -lt ${DEBUG_RETRIES} ]; do
             echo "$(timestmp)Something is not up, giving another try"
             sleep 10
             if [ "$(pidof dlv)" ] && [ "$(pidof debug_bin)" ]; then
