@@ -1,11 +1,10 @@
-FROM golang:1.16
+FROM golang:1.17
 ENV CGO_ENABLED 1
-ENV GOFLAGS '-mod=vendor'
 ENV GO_NO_DEBUG ''
 ENV PACKAGE_DIR '.'
 
 RUN apt update && apt install -y inotify-tools
-RUN go get github.com/derekparker/delve/cmd/dlv
+RUN go install github.com/go-delve/delve/cmd/dlv@latest
 
 WORKDIR /app
 
